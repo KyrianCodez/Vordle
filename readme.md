@@ -104,3 +104,8 @@ $ flask db migrate
 $ flask db upgrade
 $ flask db --help
 ```
+# Possible Errors 
+```
+$ ImportError: cannot import name 'Mapping' from 'collections'
+$ To fix go to JWT folder in Python installation. Typically located at C:\Users\<username>\AppData\Local\Programs\Python\Python310\Lib\site-packages\jwt
+$ Change from collections import Mapping to from collections.abc import Mapping

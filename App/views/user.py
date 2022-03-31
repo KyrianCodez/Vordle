@@ -9,8 +9,18 @@ from App.controllers import (
 )
 
 user_views = Blueprint('user_views', __name__, template_folder='../templates')
+auth_routes = Blueprint('auth_views', __name__, template_folder='../templates')
 
+@user_views.route('/signup', methods=['POST'])
+def signup():
+    data = request.get_json()
+    return create_user(data['username'], data['password'])
 
+@user_views.route('/login', methods=['POST'])
+def login():
+    data = request.get_json()
+    
+    
 @user_views.route('/users', methods=['GET'])
 def get_user_page():
     users = get_all_users()

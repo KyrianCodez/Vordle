@@ -1,23 +1,44 @@
-import flask_login
+from flask_login import login_user, logout_user, LoginManager, current_user
 from flask_jwt import JWT
 from App.models import User
+import json
 
-
+login_manager = LoginManager()
 def authenticate(username, password):
     user = User.query.filter_by(username=username).first()
     if user and user.check_password(password):
         return user
-
 # Payload is a dictionary which is passed to the function by Flask JWT
 def identity(payload):
     return User.query.get(payload['identity'])
 
-def login_user(user, remember):
-    return flask_login.login_user(user, remember=remember)
+def login_route(user):
+    try:
+        user = User.query.filter_by(username = user['username']).first()
+        if login_user(user):
+            user.set_auth(True)
+            return json.dumps(user.toDict())
+        else:
+            user.set_auth(False)
+            return "Login failed"
+    except:
+        return json.dumps({
+            "status":401,
+            "message": "Invalid credentials"
+        })
 
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.filter_by(id=user_id).first()
+    
 
-def logout_user():
-    flask_login.logout_user()
-
+def logout_route():
+    user = current_user._get_current_object()
+    user.set_auth(False)
+    logout_user()
+    return f'Logout success'
+    
+def setup_login(app):
+    return login_manager.init_app(app)
 def setup_jwt(app):
     return JWT(app, authenticate, identity)

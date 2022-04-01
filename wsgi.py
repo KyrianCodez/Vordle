@@ -2,11 +2,10 @@ import click
 from flask import Flask
 from flask.cli import with_appcontext, AppGroup
 import csv
-from sqlalchemy.exc import IntegrityError
-from App.controllers.word import get_all_words_as_list
 from App.database import create_db
 from App.main import app, migrate
-from App.controllers import ( create_user, get_all_users_json, get_all_users, add_word, get_random_word )
+from flask_login import LoginManager, current_user
+from App.controllers import ( create_user, get_all_users_json, get_all_users, add_word, get_random_word, login_user )
 
 # This commands file allow you to create convenient CLI commands
 # for testing controllers
@@ -20,6 +19,7 @@ def initialize():
 '''
 User Commands
 '''
+
 
 # Commands can be organized using groups
 
@@ -57,7 +57,9 @@ app.cli.add_command(word_cli)
 '''
 Generic Commands
 '''
-
+@app.cli.command("migrate")
+def mig():
+    return migrate
 
 @app.cli.command("init")
 def initialize():

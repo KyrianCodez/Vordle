@@ -9,6 +9,8 @@ def get_all_words_as_list():
         return []
     return words
 
+def word_listify(word):
+    return list(word)
 
 def add_word(word,partsOfSpeech,meaning):
     new_word = Word(word,partsOfSpeech,meaning)
@@ -19,7 +21,7 @@ def add_word(word,partsOfSpeech,meaning):
         db.session.rollback
         print('Word failed to add')
     print('Word added')
-
+    
 def get_random_word():
     words = get_all_words_as_list()
     index = randint(0,len(words))

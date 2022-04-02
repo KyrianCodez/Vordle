@@ -1,4 +1,3 @@
-from enum import unique
 from werkzeug.security import check_password_hash, generate_password_hash
 from App.database import db
 
@@ -15,7 +14,7 @@ class User(db.Model):
     def __init__(self, username, password):
         self.username = username
         self.set_password(password)
-        self.highscore = float('-inf')
+        self.highscore = -9999
         self.active = True
         self.auth = False
         self.anon = False

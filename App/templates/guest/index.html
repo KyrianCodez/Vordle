@@ -1,10 +1,35 @@
 {% extends "layout.html" %}
-{% block title %}Flask MVC App{% endblock %}
-{% block page %}Flask MVC App{% endblock %}
+{% block title %}Vordle{% endblock %}
+{% block page %}Vordle{% endblock %}
 
 {{ super() }}
 
 {% block content %}
-    <h1>Flask MVC</h1>
-    <p>This is a boileplate flask application which follows the MVC pattern for structuring the project.</p>
+<main>
+    
+    <div class="wrapper">
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>   
+    </div>
+    <style>
+        .wrapper {
+            display: grid;
+            grid-template-columns: 120px 120px;
+        }
+        .box {
+            background-color: #C4C4C4;
+            color: black;
+            border: 3px solid black;
+            padding: 30px;
+            
+            }
+    </style>
+    <h3 class="text-center">Vordle</h3>
+    <span>
+        <h6>THE 4 STOOGES </h6>
+        <h6> GROUP PROJECT</h6>
+    </span>
+</main>
 {% endblock %}

@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block title %}Login{% endblock %}
+{% block page %}Login{% endblock %}
+
+{{ super() }}
+
+{% block content %}
+    <div id="loginid">
+        <form class="login text-center" action="/submissionsiteURLgoeshere" method="POST">
+            <input type="text" class="login" placeholder="USERNAME:" name="username" required>
+            <input type="password" class="login" placeholder="PASSWORD:" name="pass" required>
+            <input type="submit" value="LOGIN" id="login-btn" class="submit-btn">
+        </form>
+        <span class="text-center">
+            <div>
+                DON&#39;T HAVE AN ACCOUNT?
+            </div>
+            <input type="submit" value="SIGNUP" id="signup-btn" class="submit-btn" onclick="window.location.href='{{ url_for('signup') }}'">
+        </span>
+    </div>
+{% endblock %}

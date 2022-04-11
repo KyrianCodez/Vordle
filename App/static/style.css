@@ -1,0 +1,38 @@
+body {
+    color: white;
+}
+main {
+    margin: auto;
+    padding: 25% 50% 50% 35%;
+    text-align: center;
+}
+.text-center{
+    margin-left: 52px;
+}
+
+.login {
+
+
+}
+
+.submit-btn {
+    border-radius: 4px;
+    box-shadow: 0px, 4px rgba(0, 0, 0, 0.25);
+    padding:15px 12px 10px 12px;
+    font-size: 20px;
+    width:300px;
+    color:white;
+}
+
+#login-btn {
+    background-color: #00B8B8;
+
+
+}
+
+
+
+#signup-btn {
+background-color: #AD00FF;
+
+}

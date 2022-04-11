@@ -13,6 +13,14 @@
 
   </head>
   <body>
+    <style>
+      body {
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        background-image:url("{{url_for('static', filename='bgimg.jpg')}}");
+      }
+    </style>
     <nav class="purple">
       <div class="nav-wrapper">
         <a href="#!" class="brand-logo center">{% block page %}{% endblock %}</a>

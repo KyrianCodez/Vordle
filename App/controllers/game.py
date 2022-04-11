@@ -12,9 +12,8 @@ def get_all_games_json():
         return []
     games = [game.toDict() for game in games]
     return games   
-def get_current_game():
-    user = current_user._get_current_object
-    game = Game.query.filter_by(user_id = user.id, active = True).first()
+def get_current_game(user_id):
+    game = Game.query.filter_by(user_id = user_id, active = True).first()
     return game
 def get_current_game_status(game):
     return game.get_active()
@@ -32,8 +31,8 @@ def load_list(game):
     word_list = game.word.word_listify()
     return word_list 
 
-def compare_word(word):
-    game = get_current_game
+def compare_word(word, user_id):
+    game = get_current_game(user_id)
     user_word = wordify(word)
     if (word_exists(user_word)):
         response = {
@@ -50,11 +49,11 @@ def compare_word(word):
         for ch in user_word_as_list:
             try:
                 if game_list.index(ch) == user_word_as_list.index(ch):
-                    response.update(index + 1,True)
+                    response.update({index+1:True})
                 else:
-                    response.update(index + 1, False)
+                    response.update({index+1:False})
             except ValueError:
-                    response.update(index+1,None)
+                    response.update({index+1:None})
             index +=1
         return response
 def check_response(response):
@@ -81,10 +80,32 @@ def end_game(response):
             }
 def create_game(user_id, mode, word_id):
     try:
-        new_game = Game(user_id, mode, word_id)
+        new_game = Game(user_id = user_id, mode = mode, word_id = word_id)
         db.session.add(new_game)
         db.session.commit()
     except:
         db.session.rollback()
         return "A server side error occured", 404
-    return new_game
+    return get_current_game(user_id)
+def check_active_game(user_id):
+    try:
+        game = get_current_game(user_id)
+        if(get_current_game_status(game) == True):
+                return True
+    except:
+        return False
+def start_game(user_id, mode):
+    if (check_active_game(user_id)):
+        return "Game already in progress"
+    word = get_random_word();
+    game = create_game(user_id, mode, word.id)
+    return "Game created"
+def end_game(user_id):
+    try:
+        game = get_current_game(user_id)
+        game.set_active(False)
+        return "Game ended"
+    except:
+        return "A server side error occured", 404
+    
+

@@ -13,7 +13,7 @@ def wordify(word):
     return Word(word,None,None)
 
 def word_exists(word):
-    database = get_all_words_as_list
+    database = get_all_words_as_list()
     w = wordify(word)
     for word in database:
         if(word.__eq__(word)):

@@ -1,19 +1,42 @@
 body {
     color: white;
+    background-image: url("/static/bgimg.png") !important;
 }
+/* Splash Screen */
 main {
-    margin: auto;
-    padding: 25% 50% 50% 35%;
+    padding: 50% 45% 50% 28%;
     text-align: center;
 }
+
+/* Frame */
+.wrapper {
+    display: grid;
+    grid-template-columns: 80px 80px;          
+}
+
+.box {
+    background-color: #C4C4C4;
+    color: black;
+    border: 3px solid black;
+    padding: 30px !important;        
+}
+
+.main-heading{
+    font-size: 2em !important;
+    padding: 0%;
+
+}
+
+
 .text-center{
     margin-left: 52px;
 }
 
-.login {
+/* LOGIN */
+/* .login {
 
 
-}
+} */
 
 .submit-btn {
     border-radius: 4px;
@@ -31,8 +54,29 @@ main {
 }
 
 
-
+/* SIGNUP */
 #signup-btn {
 background-color: #AD00FF;
 
+}
+
+/* DESKTOP VIEW */
+@media only screen(min-width: 768px){
+    
+    /* Splash Screen */
+    .main-heading{
+        font-size: 10em !important;
+
+    }
+
+    
+    /* Frame */
+    .wrapper {
+        display: grid;
+        grid-template-columns: 120px 120px;          
+    }
+
+    .box {
+        padding: 30px;        
+    }
 }

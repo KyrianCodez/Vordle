@@ -2,7 +2,7 @@ from flask_login import current_user
 from App.database import db
 from App.models import Game
 from App.controllers.word import *
-import json
+
 def get_all_games():
     return Game.query.all()
 
@@ -23,16 +23,15 @@ def get_current_game_chances(game):
 
 def update_current_game_chance(game):
     game.update_chance()
-
-def update_current_game_status(game):
-    game.set_active(False)
     
+def update_current_game_status(game): 
+    game.set_active(False)
 def load_list(game):
     word_list = game.word.word_listify()
     return word_list 
 
-def compare_word(word, user_id):
-    game = get_current_game(user_id)
+    
+def compare_word(word, game):
     user_word = wordify(word)
     if (word_exists(user_word)):
         response = {
@@ -41,7 +40,6 @@ def compare_word(word, user_id):
             3: None,
             4: None,
             5: None,
-
         }
         game_list = load_list(game)
         user_word_as_list = user_word.word_listify()
@@ -62,6 +60,27 @@ def check_response(response):
     return True
 def update_game_chance(game):
     game.update_chance()
+def update_game(game):
+    db.session.add(game)
+    db.session.commit()
+def handle_response(response, game, timer):
+    if(check_response(response)):
+        if timer != 0:
+            try:
+                word = get_random_word()
+                game.reset_chance()
+                game.set_word(word.id)
+                game.add_to_score()
+                update_game(game)
+                return game.get_word()
+            except:
+                return "An error occurred"
+    else:
+        print("Incorrect")
+        game.update_chance()
+        update_game(game)
+        return response
+
 def end_game(response):
     game = get_current_game
     if(game.get_chance() == 0):
@@ -70,14 +89,12 @@ def end_game(response):
                 "status": game.get_active(),
                 "code" : 1
             }
-
-
     if(check_response(response)):
         game.set_active(False)
         return {
                 "status": game.get_active(),
                 "code" : 2
-            }
+        }
 def create_game(user_id, mode, word_id):
     try:
         new_game = Game(user_id = user_id, mode = mode, word_id = word_id)
@@ -97,13 +114,15 @@ def check_active_game(user_id):
 def start_game(user_id, mode):
     if (check_active_game(user_id)):
         return "Game already in progress"
-    word = get_random_word();
+    word = get_random_word()
     game = create_game(user_id, mode, word.id)
-    return "Game created"
+    return game.toDict()
 def end_game(user_id):
     try:
         game = get_current_game(user_id)
         game.set_active(False)
+        db.session.add(game)
+        db.session.commit()
         return "Game ended"
     except:
         return "A server side error occured", 404

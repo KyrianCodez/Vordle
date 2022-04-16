@@ -14,8 +14,8 @@ def create_user(username, password):
         db.session.commit()
     except IntegrityError:
         db.session.rollback()
-        return 'User already exists'
-    return 'User success'
+        return False
+    return True
 
 def get_all_users_json():
     users = User.query.all()

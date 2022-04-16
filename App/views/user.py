@@ -17,7 +17,9 @@ guest_views = Blueprint('user_views', __name__, template_folder='../templates/gu
 @guest_views.route('/signup', methods=['POST'])
 def signup():
     data = request.get_json()
-    return create_user(data['username'], data['password'])
+    if create_user(data['username'], data['password']):
+        return login_route(data)
+    return "User already exists"
 
 @guest_views.route('/login', methods=['POST'])
 def login():

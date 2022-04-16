@@ -1,3 +1,4 @@
+import re
 from flask import Blueprint, render_template, jsonify, request, send_from_directory
 from flask_jwt import jwt_required
 from flask_login import current_user, login_required
@@ -8,7 +9,7 @@ from App.controllers import (
     start_game,
     end_game
 )
-from App.controllers.game import compare_word
+from App.controllers.game import compare_word, get_current_game, handle_response
 
 auth_views= Blueprint('auth_views', __name__, template_folder='../templates/auth')
 
@@ -31,7 +32,19 @@ def end():
 def check_word():
     user = current_user._get_current_object()
     data  = request.get_json()
-    return json.dumps(compare_word(data['word'], user.id))
+    game = get_current_game(user.id)
+    if game.get_chance() != 0:
+       
+        return json.dumps(handle_response( compare_word(data['word'], game), game, 60))
+    # response = compare_word(data['word'], game)
+    # if(handle_response(response, game, 60) == 
+
+@auth_views.route('/query', methods=['GET','POST'])
+@login_required
+def query_word():
+    user = current_user._get_current_object()
+    game = get_current_game(user.id)
+    return json.dumps(game.toDict())
 
 
     

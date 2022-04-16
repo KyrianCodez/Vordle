@@ -75,6 +75,10 @@ body {
     background-color: white !important;
 }
 
+input:focus+label {
+    color: unset !important;
+}
+
 .auth-label {
     color: white;
     font-size: 120%;

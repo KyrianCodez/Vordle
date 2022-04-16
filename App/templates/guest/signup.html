@@ -5,17 +5,24 @@
 {{ super() }}
 
 {% block content %}
-    <main>
-        <form class="login text-center" action="play" method="POST">
-            <input type="text" class="login" placeholder="USERNAME:" name="username" required>
-            <input type="password" class="login" placeholder="PASSWORD:" name="pass" required>
-            <input type="submit" value="signup" id="signup-btn" class="submit-btn">
+    <main class="auth">
+        <form class="auth-form text-center" action="play" method="POST">
+            <label for="username" class="auth-label"> USERNAME </label>
+            <input type="text" class="auth-input" name="username" required>
+
+            <label for="pass" class="auth-label"> PASSWORD </label>
+            <input type="password" class="auth-input" name="pass" onChange=check() required>
+           
+            <label for="pw" class="auth-label"> RE-ENTER PASSWORD </label>
+            <input type="password" class="auth-input" name="pw" onChange=check() required>
+           
+            <input type="submit" value="SIGNUP" id="signup-btn" class="submit-btn">
         </form>
         <span class="center">
-            <div class="nobr align-center">
+            <div class="nobr sign align-center">
                 ALREADY HAVE AN ACCOUNT?
             </div>
-            <input type="submit" value="LOGIN" id="login-btn" class="submit-btn" onclick="window.location.href='{{ url_for('signup') }}'">
+            <input type="submit" value="LOGIN" id="login-btn" class="submit-btn" onclick="window.location.href='{{ url_for('login') }}'">
         </span>
     </main>
 {% endblock %}

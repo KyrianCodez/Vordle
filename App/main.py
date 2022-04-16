@@ -72,7 +72,7 @@ def login():
 def signup():
     return render_template('signup.html')
 
-@app.route('/playgame')
+@app.route('/play', methods=['POST'])
 def play():
     return render_template('play.html')
 

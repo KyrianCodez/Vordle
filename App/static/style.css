@@ -48,33 +48,6 @@ main {
     margin: 8rem 8rem 0rem 0rem !important;
 }
 
-/* LOGIN */
-/* .login {
-
-
-} */
-
-.submit-btn {
-    border-radius: 4px;
-    box-shadow: 0px, 4px rgba(0, 0, 0, 0.25);
-    padding:15px 12px 10px 12px;
-    font-size: 20px;
-    width:300px;
-    color:white;
-}
-
-#login-btn {
-    background-color: #00B8B8;
-}
-
-
-/* SIGNUP */
-#signup-btn {
-background-color: #AD00FF;
-
-}
-
-
 /* DESKTOP VIEW */
 @media only screen and (min-width: 768px){
     body {
@@ -117,3 +90,37 @@ background-color: #AD00FF;
     }
     
 }
+
+
+/* LOGIN */
+.login {
+    color: white;
+
+}
+
+/* .align-center{
+    margin: 25px;
+    width: 350px;
+    height: 200px;
+} */
+
+.submit-btn {
+    border-radius: 4px;
+    box-shadow: 0px, 4px rgba(0, 0, 0, 0.25);
+    padding:15px 12px 10px 12px;
+    font-size: 20px;
+    width:300px;
+    color:white;
+}
+
+#login-btn {
+    background-color: #00B8B8;
+}
+
+
+/* SIGNUP */
+#signup-btn {
+background-color: #AD00FF;
+
+}
+

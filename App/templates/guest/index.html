@@ -5,7 +5,8 @@
 {{ super() }}
 
 {% block content %}
-<main class="invisible" onclick=login()>
+<a href="login" class="invisible">
+<main>
     <!-- Frame -->
     <div class="wrapper">
         <div class="box"></div>
@@ -15,14 +16,14 @@
     </div>
     
     <section class="center">
-        <a href="login" class="invisible">
+        
         <h3 class="splash-heading nobr"> Spell It</h3>
         <article class="small">
             <h6 class="nobr center">THE 4 STOOGES </h6>
             <h6 class="nobr center"> GROUP Project</h6>
         </article>
-    </a>
     </section>
-</a>
+
 </main>
+</a>
 {% endblock %}

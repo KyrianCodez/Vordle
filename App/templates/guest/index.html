@@ -5,19 +5,24 @@
 {{ super() }}
 
 {% block content %}
-<main>
+<main class="invisible" onclick=login()>
     <!-- Frame -->
     <div class="wrapper">
         <div class="box"></div>
         <div class="box"></div>
         <div class="box"></div>
-        <div class="box"></div>   
+        <div class="box"></div>
     </div>
     
-    <section  class="center">
+    <section class="center">
+        <a href="login" class="invisible">
         <h3 class="splash-heading nobr"> Spell It</h3>
-            <h6 class="nobr small">THE 4 STOOGES </h6>
-            <h6 class="nobr small"> GROUP Project</h6>
+        <article class="small">
+            <h6 class="nobr center">THE 4 STOOGES </h6>
+            <h6 class="nobr center"> GROUP Project</h6>
+        </article>
+    </a>
     </section>
+</a>
 </main>
 {% endblock %}

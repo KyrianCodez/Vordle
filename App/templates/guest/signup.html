@@ -11,10 +11,10 @@
             <input type="text" class="auth-input" name="username" required>
 
             <label for="pass" class="auth-label"> PASSWORD </label>
-            <input type="password" class="auth-input" name="pass" onChange=check() required>
+            <input type="password" class="auth-input" id="pw1" name="pass" onfocusout="checkpw()" required>
            
             <label for="pw" class="auth-label"> RE-ENTER PASSWORD </label>
-            <input type="password" class="auth-input" name="pw" onChange=check() required>
+            <input type="password" class="auth-input" name="pw" onfocusout='checkpw()' required>
            
             <input type="submit" value="SIGNUP" id="signup-btn" class="submit-btn">
         </form>

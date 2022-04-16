@@ -72,6 +72,10 @@ def login():
 def signup():
     return render_template('signup.html')
 
+@app.route('/user')
+def account():
+    return render_template('details.html')
+
 @app.route('/play', methods=['POST'])
 def play():
     return render_template('play.html')

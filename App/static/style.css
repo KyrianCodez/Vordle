@@ -80,7 +80,7 @@ input:focus+label {
 }
 
 .auth-label {
-    color: white;
+    color: white!important;
     font-size: 120%;
 }
 
@@ -115,6 +115,30 @@ input:focus+label {
 
 #signup-btn:hover {
     background-color: #7d04b6!important;
+}
+
+
+/* ACCOUNT DETAILS */
+
+#save-btn {
+    background-color: #00315F !important;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 3px 20px 0px;
+    border-radius: 65px;
+    width: 50%;
+    margin-left: 23%!important;
+}
+
+#save-btn:hover {
+    background-color: #03427d!important;
+}
+
+#red-btn {
+    background-color: #CB0000 !important;
+    margin-top: 50px;
+}
+
+#red-btn:hover {
+    background-color: #b80505!important;
 }
 
 

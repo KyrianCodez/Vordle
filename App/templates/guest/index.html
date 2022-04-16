@@ -5,19 +5,25 @@
 {{ super() }}
 
 {% block content %}
+<a href="login" class="invisible">
 <main>
     <!-- Frame -->
     <div class="wrapper">
         <div class="box"></div>
         <div class="box"></div>
         <div class="box"></div>
-        <div class="box"></div>   
+        <div class="box"></div>
     </div>
     
-    <section  class="center">
+    <section class="center">
+        
         <h3 class="splash-heading nobr"> Spell It</h3>
-            <h6 class="nobr small">THE 4 STOOGES </h6>
-            <h6 class="nobr small"> GROUP Project</h6>
+        <article class="small">
+            <h6 class="nobr center">THE 4 STOOGES </h6>
+            <h6 class="nobr center"> GROUP Project</h6>
+        </article>
     </section>
+
 </main>
+</a>
 {% endblock %}

@@ -82,4 +82,5 @@ def menu():
 
 @app.route('/leaderboard')
 def lb():
-    return render_template('leaderboard.html')
+    arr=["Christian", "Egan", "Rehannah", "Darriah"]
+    return render_template('leaderboard.html', data=arr)

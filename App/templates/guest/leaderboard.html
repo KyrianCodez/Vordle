@@ -6,11 +6,19 @@
 
 {% block content %}
     <main class="lb">
-    <div class="wrapper">
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-    </div>
+        <table class="leaderboard">
+            <colgroup>
+              <col class="teal" />
+              <col class="purple" />
+            </colgroup>
+            <tbody>
+                {% for i in range (4): %}               
+                <tr>
+                  <td class="rank">{{i+1}}</td>
+                  <td class="user">{{data[i]}}</td>
+                </tr>
+              {%  endfor %}
+            </tbody>
+        </table>
     </main>
 {% endblock %}

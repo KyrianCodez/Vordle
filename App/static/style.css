@@ -140,6 +140,29 @@
     #logout {
         margin-top: 25%;
     }
+    /* LEADERBOARD */
+    
+    .leaderboard {
+        margin: 30% 5% 0% 10%;
+        width: 90%;
+    }
+    
+    table,
+    th,
+    td {
+        border: 2px solid white!important;
+        border-collapse: collapse!important;
+    }
+    
+    .rank {
+        text-align: center;
+        padding: 5px;
+    }
+    
+    .user {
+        text-transform: uppercase;
+        padding: 25px;
+    }
     /* ACCOUNT DETAILS */
     
     #save-btn {
@@ -202,5 +225,10 @@
         }
         #logout {
             margin-top: 18%;
+        }
+        /* LEADERBOARD */
+        .leaderboard {
+            margin: 10% 5% 0% 10%!important;
+            width: 75%;
         }
     }

@@ -5,17 +5,21 @@
 {{ super() }}
 
 {% block content %}
-    <div id="loginid">
-        <form class="login text-center" action="/submissionsiteURLgoeshere" method="POST">
-            <input type="text" class="login" placeholder="USERNAME:" name="username" required>
-            <input type="password" class="login" placeholder="PASSWORD:" name="pass" required>
+    <main class="auth">
+        <form class=" auth-form text-center" action="play" method="POST">
+            <label for="username" class="auth-label"> USERNAME </label>
+            <input type="text" class="auth-input" id="usermame" name="username" required>
+
+            <label for="pass" class="auth-label"> PASSWORD </label>
+            <input type="password" class="auth-input" id="pass" name="password" required>
+           
             <input type="submit" value="LOGIN" id="login-btn" class="submit-btn">
         </form>
-        <span class="text-center">
-            <div>
+        <span class="center">
+            <div class="nobr sign align-center">
                 DON&#39;T HAVE AN ACCOUNT?
             </div>
             <input type="submit" value="SIGNUP" id="signup-btn" class="submit-btn" onclick="window.location.href='{{ url_for('signup') }}'">
         </span>
-    </div>
+    </main>
 {% endblock %}

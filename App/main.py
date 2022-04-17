@@ -72,10 +72,15 @@ def login():
 def signup():
     return render_template('signup.html')
 
-@app.route('/playgame')
-def play():
-    return render_template('play.html')
+@app.route('/user')
+def account():
+    return render_template('details.html')
+
+@app.route('/menu')
+def menu():
+    return render_template('menu.html')
 
 @app.route('/leaderboard')
 def lb():
-    return render_template('signup.html')
+    arr=["Christian", "Egan", "Rehannah", "Darriah"]
+    return render_template('leaderboard.html', data=arr)

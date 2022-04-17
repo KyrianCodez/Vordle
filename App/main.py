@@ -76,10 +76,10 @@ def signup():
 def account():
     return render_template('details.html')
 
-@app.route('/play')
-def play():
-    return render_template('play.html')
+@app.route('/menu')
+def menu():
+    return render_template('menu.html')
 
 @app.route('/leaderboard')
 def lb():
-    return render_template('signup.html')
+    return render_template('leaderboard.html')

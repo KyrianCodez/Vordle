@@ -63,23 +63,25 @@ def update_game_chance(game):
 def update_game(game):
     db.session.add(game)
     db.session.commit()
-def handle_response(response, game, timer):
-    if(check_response(response)):
-        if timer != 0:
-            try:
-                word = get_random_word()
-                game.reset_chance()
-                game.set_word(word.id)
-                game.add_to_score()
-                update_game(game)
-                return game.get_word()
-            except:
-                return "An error occurred"
-    else:
+def start_new_round(game):
+    try:
+        word = get_random_word()
+        game.reset_chance()
+        game.set_word(word.id)
+        game.add_to_score()
+        update_game(game)
+        return True
+    except:
+        return False
+def handle_incorrect(game):
+    try:
         print("Incorrect")
         game.update_chance()
         update_game(game)
-        return response
+        return True
+    except:
+        return False
+       
 
 def end_game(response):
     game = get_current_game

@@ -76,7 +76,7 @@ def signup():
 def account():
     return render_template('details.html')
 
-@app.route('/play', methods=['POST'])
+@app.route('/play')
 def play():
     return render_template('play.html')
 

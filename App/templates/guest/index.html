@@ -5,7 +5,7 @@
 {{ super() }}
 
 {% block content %}
-<a href="login" class="invisible">
+
 <main class="home">
     <!-- Frame -->
     <div class="wrapper">
@@ -17,8 +17,10 @@
     
     <section class="center">
         
-        <h3 class="splash-heading nobr"> Spell It</h3>
-        <p class="nobr flash">Play Now</p>
+        <h3 class="splash-heading nobr"> Spell It!!!</h3>
+        <a href="/render_login" class="invisible">
+            <p class="nobr flash">Play Now</p>
+        </a>
         <article class="small">
             <h6 class="nobr center">THE 4 STOOGES </h6>
             <h6 class="nobr center"> GROUP Project</h6>
@@ -26,5 +28,5 @@
     </section>
 
 </main>
-</a>
+
 {% endblock %}

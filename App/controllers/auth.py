@@ -1,7 +1,9 @@
+from flask import flash
 from flask_login import login_user, logout_user, LoginManager, current_user
 from flask_jwt import JWT
 from App.models import User
 import json
+import jyserver.Flask as jsf
 
 login_manager = LoginManager()
 def authenticate(username, password):
@@ -17,15 +19,9 @@ def login_route(user):
         user = User.query.filter_by(username = user['username']).first()
         if login_user(user):
             user.set_auth(True)
-            return json.dumps(user.toDict())
-        else:
-            user.set_auth(False)
-            return "Login failed"
+            return user
     except:
-        return json.dumps({
-            "status":401,
-            "message": "Invalid credentials"
-        })
+        return False
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -37,7 +33,8 @@ def logout_route():
     user.set_auth(False)
     logout_user()
     return f'Logout success'
-    
+def setup_jsf(app):
+    return jsf.use(app) 
 def setup_login(app):
     return login_manager.init_app(app)
 def setup_jwt(app):

@@ -1,22 +1,23 @@
 {% extends "layout.html" %}
-{% block title %}Login{% endblock %}
-{% block page %}Login{% endblock %}
+
 
 {{ super() }}
 
 {% block content %}
     <main class="auth">
-        <form class=" auth-form text-center" action="play" method="POST">
-            <label for="username" class="auth-label"> USERNAME </label>
-            <input type="text" class="auth-input" id="usermame" name="username" required>
+        <div class="spacer" ></div>
+        <form class="auth-form text-center" action="login" method="POST">
+            <div class="input-container">
+                <label for="username" class="auth-label"> USERNAME </label>
+                <input type="text" class="auth-input" id="usermame" name="username" required>
 
-            <label for="pass" class="auth-label"> PASSWORD </label>
-            <input type="password" class="auth-input" id="pass" name="password" required>
-           
+                <label for="password" class="auth-label"> PASSWORD </label>
+                <input type="password" class="auth-input" id="password" name="password" required>
+            </div>
             <input type="submit" value="LOGIN" id="login-btn" class="submit-btn">
         </form>
         <span class="center">
-            <div class="nobr sign align-center">
+            <div class="nobr sign align-center"> 
                 DON&#39;T HAVE AN ACCOUNT?
             </div>
             <input type="submit" value="SIGNUP" id="signup-btn" class="submit-btn" onclick="window.location.href='{{ url_for('signup') }}'">

@@ -64,23 +64,3 @@ def create_app(config={}):
 app = create_app()
 migrate = get_migrate(app)
 
-@app.route('/login')
-def login():
-    return render_template('login.html')
-
-@app.route('/signup')
-def signup():
-    return render_template('signup.html')
-
-@app.route('/user')
-def account():
-    return render_template('details.html')
-
-@app.route('/menu')
-def menu():
-    return render_template('menu.html')
-
-@app.route('/leaderboard')
-def lb():
-    arr=["Christian", "Egan", "Rehannah", "Darriah"]
-    return render_template('leaderboard.html', data=arr)

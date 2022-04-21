@@ -1,4 +1,4 @@
-{% extends "layout.html" %}
+{% extends "/guest/layout.html" %}
 
 
 {{ super() }}
@@ -20,7 +20,9 @@
             <div class="nobr sign align-center"> 
                 DON&#39;T HAVE AN ACCOUNT?
             </div>
-            <input type="submit" value="SIGNUP" id="signup-btn" class="submit-btn" onclick="window.location.href='{{ url_for('signup') }}'">
+            <a href="/signup" class="invisible">
+                <input type="button" value="SIGNUP" id="signup-btn" class="submit-btn">
+            </a>
         </span>
     </main>
 {% endblock %}

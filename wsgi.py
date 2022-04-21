@@ -68,6 +68,7 @@ def initialize():
     with open('./App/dictionary.csv') as f:
         reader = csv.DictReader(f)
         for row in reader:
+            row['Word'] = row['Word'].lower()
             for key in row.keys():
                 if row.get(key) == "":
                     swap = {key : None}
@@ -76,7 +77,6 @@ def initialize():
     
 
     for row in jsonArray: 
-        add_word(row['Word'], row['PartsOfSpeech'], row['Meaning'])
-   
+        add_word(row['Word'], row['PartsOfSpeech'], row['Meaning']) 
     create_db(app)
     print('database intialized')

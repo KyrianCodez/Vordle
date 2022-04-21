@@ -1,0 +1,69 @@
+{% extends "/auth/layout.html" %}
+{% block title %}Game{% endblock %}
+{% block page %}Time Attack{% endblock %}
+{%block content %}
+<div id="game">
+        <div id="board-container">
+          <div id="board" style="width: 350px; height: 420px;">
+              <div>
+            
+                  {% include '/components/game_row.html' %}
+                  {% include '/components/game_row.html' %}
+                  {% include '/components/game_row.html' %}
+                  {% include '/components/game_row.html' %}
+                  {% include '/components/game_row.html' %}
+              
+              </div>
+        </div>
+    </div>
+    {%endblock%}
+    {%block script%}
+    <script type="text/javascript">
+      
+      const fetchResponse = async (data) =>{
+        const response = await fetch('/check',{
+          method: 'POST', // *GET, POST, PUT, DELETE, etc.
+          mode: 'cors', // no-cors, *cors, same-origin
+          cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+          credentials: 'same-origin', // include, *same-origin, omit
+          headers: {
+            'Content-Type': 'application/json'
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          redirect: 'follow', // manual, *follow, error
+          referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+          body: JSON.stringify(data ) // body data type must match "Content-Type" header
+        });
+        return response.json(); // parses JSON response into native JavaScript objects
+      }
+      const updateTile = (form, data) => {
+      let tiles = form.elements['tile']
+      let index = 1
+      for (let tile of tiles){
+        
+        tile.setAttribute('data-state', data[index])
+        index ++
+        console.log(tile.getAttribute('data-state'))
+      }
+      
+      
+       
+      }
+      const getData =  async (form) => {
+       
+
+        let formData = new FormData(form)
+        let string = formData.getAll("tile")
+      
+        string = string.join('')
+        let dict = {
+          word : string
+        }
+        
+       fetchResponse(dict).then(data=>{
+        updateTile(form, data)
+       })
+      }
+    
+    </script> 
+    {%endblock%}

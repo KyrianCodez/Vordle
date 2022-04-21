@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, jsonify, request, send_from_directory
+from flask import Blueprint, flash, render_template, jsonify, request, send_from_directory
 from flask_jwt import jwt_required
 from flask_login import current_user, login_required
 import json
@@ -17,17 +17,20 @@ from App.controllers import (
 )
 from App.controllers.game import check_response
 
-auth_views= Blueprint('auth_views', __name__, template_folder='../templates/auth')
+auth_views= Blueprint('auth_views', __name__, template_folder='../templates')
 
-@auth_views.route('/logout',methods=['POST'])
+@auth_views.route('/logout',methods=['GET'])
 @login_required
 def logout():
-    return logout_route()
+    if logout_route():
+        flash("Logout Success")
+        return render_template("/guest/index.html")
 @auth_views.route('/start', methods=['GET','POST'])
 @login_required
 def start():
     user = current_user._get_current_object()
-    return json.dumps(start_game(user.id, "Time Attack"))
+    game = start_game(user.id, "Time Attack")
+    return render_template('/auth/game.html', game = game.toDict())
 @auth_views.route('/end', methods=['GET','POST'])
 @login_required
 def end():
@@ -45,7 +48,7 @@ def check_word():
             if start_new_round(game):
                 new_round = get_current_game(user.id)
                 return json.dumps(new_round.toDict()) 
-        if handle_incorrect():
+        if handle_incorrect(game):
             return json.dumps(response)
 
 @auth_views.route('/query', methods=['GET','POST'])

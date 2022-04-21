@@ -32,7 +32,7 @@ def logout_route():
     user = current_user._get_current_object()
     user.set_auth(False)
     logout_user()
-    return f'Logout success'
+    return True
 def setup_jsf(app):
     return jsf.use(app) 
 def setup_login(app):

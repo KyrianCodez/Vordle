@@ -1,14 +1,18 @@
-{% extends "layout.html" %}
-{% block title %}Play Game{% endblock %}
+{% extends "/auth/layout.html" %}
+{% block title %}Game Menu{% endblock %}
 {% block page %}Menu{% endblock %}
 
 
 {% block content %}
 <main class="menu text-center">
-        <button class="orange menu-btn submit-btn">TIME ATTACK</button>
-        <button class="teal menu-btn submit-btn">ENDLESS</button>
+        <div style="height: 100px">
+
+        </div>
+        <div class="input-container">
+        <button class="orange menu-btn submit-btn" onclick="window.location.href='{{ url_for( 'auth_views.start') }}';">TIME ATTACK</button>
         <button class="orange menu-btn submit-btn" onclick="window.location.href='leaderboard'">LEADERBOARD</button>
         <button class="teal menu-btn submit-btn"  onclick="window.location.href='user'">EDIT ACCOUNT</button>
-        <button id="logout" class="red-btn submit-btn" onclick="window.location.href='/'"> LOGOUT </button>
+        </div>
+        <button id="logout" class="red-btn submit-btn"onclick="window.location.href='{{ url_for( 'auth_views.logout') }}' "> LOGOUT </button>
 </main>
 {% endblock %}

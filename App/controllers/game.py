@@ -35,11 +35,11 @@ def compare_word(word, game):
     user_word = wordify(word)
     if (word_exists(user_word)):
         response = {
-            1: None,
-            2: None,
-            3: None,
-            4: None,
-            5: None,
+            1: '',
+            2: '',
+            3: '',
+            4: '',
+            5: '',
         }
         game_list = load_list(game)
         user_word_as_list = user_word.word_listify()
@@ -47,15 +47,15 @@ def compare_word(word, game):
         for ch in user_word_as_list:
             try:
                 if game_list.index(ch) == user_word_as_list.index(ch):
-                    response.update({index+1:True})
+                    response.update({index+1:'correct'})
                 else:
-                    response.update({index+1:False})
+                    response.update({index+1:'present'})
             except ValueError:
-                    response.update({index+1:None})
+                    response.update({index+1:'absent'})
             index +=1
         return response
 def check_response(response):
-    if False in response.values() or None in response.values():
+    if 'present' in response.values() or 'absent' in response.values():
         return False
     return True
 def update_game_chance(game):
@@ -114,11 +114,14 @@ def check_active_game(user_id):
     except:
         return False
 def start_game(user_id, mode):
-    if (check_active_game(user_id)):
-        return "Game already in progress"
-    word = get_random_word()
-    game = create_game(user_id, mode, word.id)
-    return game.toDict()
+    try:
+        game_in_progress = get_current_game(user_id)
+        if(get_current_game_status(game_in_progress) == True):
+            return game_in_progress 
+    except:
+        word = get_random_word()
+        game = create_game(user_id, mode, word.id)
+        return game
 def end_game(user_id):
     try:
         game = get_current_game(user_id)

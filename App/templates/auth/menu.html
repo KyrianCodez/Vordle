@@ -6,12 +6,11 @@
 {% block content %}
 <main class="menu text-center">
         <div style="height: 100px">
-
         </div>
         <div class="input-container">
         <button class="orange menu-btn submit-btn" onclick="window.location.href='{{ url_for( 'auth_views.start') }}';">ENDLESS</button>
         <button class="teal menu-btn submit-btn" onclick="window.location.href='leaderboard'">LEADERBOARD</button>
-        <button class="orange menu-btn submit-btn"  onclick="window.location.href='user'">EDIT ACCOUNT</button>
+        <button class="menu-btn submit-btn"  onclick="window.location.href='user'">EDIT ACCOUNT</button>
         </div>
         <button id="logout" class="red-btn submit-btn"onclick="window.location.href='{{ url_for( 'auth_views.logout') }}' "> LOGOUT </button>
 </main>

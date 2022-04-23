@@ -12,8 +12,8 @@ from App.controllers import (
     start_new_round,
     compare_word, 
     get_current_game, 
-    handle_incorrect
-
+    handle_incorrect,
+    order_by_score
 
 )
 from App.controllers.game import check_response
@@ -69,6 +69,10 @@ def query_word():
     user = current_user._get_current_object()
     game = get_current_game(user.id)
     return json.dumps(game.toDict())
+@auth_views.route('/leaderboard', methods=['GET'])
+@login_required
+def get_leaderboard():
+    return render_template('/auth/leaderboard.html',rankings = order_by_score())
 
 
     

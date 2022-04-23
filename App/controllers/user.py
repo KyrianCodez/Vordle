@@ -28,3 +28,7 @@ def update_highscore(user, score):
         user.highscore = score 
 def get_all_users():
     return User.query.all()
+def order_by_score():
+    users = User.query.order_by(User.highscore.asc()).all()
+    return users
+   

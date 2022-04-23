@@ -1,8 +1,8 @@
-{% extends "layout.html" %}
+{% extends "/auth/layout.html" %}
 {% block title %}Leaderboard{% endblock %}
 {% block page %}Leaderboard{% endblock %}
 
-{{ super() }}
+
 
 {% block content %}
     <main class="lb">
@@ -12,12 +12,15 @@
               <col class="purple" />
             </colgroup>
             <tbody>
-                {% for i in range (4): %}               
+              {%with i = 0%}
+                {% for rank in rankings%}  
+                
                 <tr>
                   <td class="rank">{{i+1}}</td>
-                  <td class="user">{{data[i]}}</td>
+                  <td class="user">{{rank.username}}</td>
                 </tr>
               {%  endfor %}
+              {% endwith  %}
             </tbody>
         </table>
     </main>

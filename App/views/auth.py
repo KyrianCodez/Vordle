@@ -1,3 +1,4 @@
+from webbrowser import get
 from flask import Blueprint, flash, render_template, jsonify, request, send_from_directory
 from flask_jwt import jwt_required
 from flask_login import current_user, login_required
@@ -16,6 +17,7 @@ from App.controllers import (
 
 )
 from App.controllers.game import check_response
+from App.views.user import login
 
 auth_views= Blueprint('auth_views', __name__, template_folder='../templates')
 
@@ -35,22 +37,32 @@ def start():
 @login_required
 def end():
     user = current_user._get_current_object()
-    return json.dumps(end_game(user.id))
-@auth_views.route('/check', methods=['GET','POST'])
+    end_game(user)
+    return render_template('/auth/menu.html')
+@auth_views.route('/check', methods=['POST'])
 @login_required
 def check_word():
     user = current_user._get_current_object()
     data  = request.get_json()
     game = get_current_game(user.id)
     response = compare_word(data['word'], game)
-    if game.get_chances(): 
-        if check_response(response):
-            if start_new_round(game):
-                new_round = get_current_game(user.id)
-                return json.dumps(new_round.toDict()) 
-        if handle_incorrect(game):
-            return json.dumps(response)
-
+    eval = check_response(response)
+    responseDict = {
+        "response" : response,
+        "isCorrect" : eval,
+        "chances" : game.get_chances()
+    }
+    if eval == True:
+        return json.dumps(responseDict)
+    if handle_incorrect(game):
+        return json.dumps(responseDict)
+@auth_views.route('/new_round', methods=['GET'])
+@login_required
+def new_round():
+    user = current_user._get_current_object()
+    if start_new_round(get_current_game(user.id)):
+        new_round = get_current_game(user.id)
+        return json.dumps(new_round.toDict()) 
 @auth_views.route('/query', methods=['GET','POST'])
 @login_required
 def query_word():

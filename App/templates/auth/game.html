@@ -1,7 +1,9 @@
 {% extends "/auth/layout.html" %}
 {% block title %}Game{% endblock %}
-{% block page %}Time Attack{% endblock %}
+{% block page %}Endless{% endblock %}
 {%block content %}
+<h4 class="scoreHeading" id="scoreHeading">Score: <span id="score">0</span></h4>
+</div>
 <div id="game">
         <div id="board-container">
           <div id="board" style="width: 350px; height: 420px;">
@@ -17,6 +19,7 @@
         </div>
     </div>
     {%endblock%}
+
     {%block script%}
     <script type="text/javascript">
       
@@ -49,6 +52,41 @@
       
        
       }
+      const updateModal = (elem, game, url, state, message) => {
+        elem.innerHTML = ''
+        elem.innerHTML += `
+        <div class="modal-content">
+          <h4>${state}</h4>
+          <p> Word = ${game.word.word}<br> Meaning = ${game.word.meaning}</p>
+        </div>
+      
+    
+        <div class="modal-footer">
+          <Button onclick="handleModal('${url}')" class="modal-close waves-effect waves-green btn-flat">${message}</Button>
+        </div>
+        `
+
+      }
+      const getRoute = async (url) => {
+        let response = await fetch(url)
+        return response.json()
+      }
+      const handleModal = (url) => {
+        if (url == "/new_round"){
+          getRoute(url).then(data=>{
+            window.location.href='/start'
+            updateScore(getRoute('/query'))
+          })
+        }else {
+          window.location.href='/end'
+        }
+     
+      }
+      const updateScore = (game) => {
+        let score = document.getElementById('score')
+        
+        score.innerHTML = game.score
+      }
       const getData =  async (form) => {
        
 
@@ -59,11 +97,34 @@
         let dict = {
           word : string
         }
-        
-       fetchResponse(dict).then(data=>{
-        updateTile(form, data)
-       })
-      }
+        fetchResponse(dict).then(async function(data) {
+          
+          updateTile(form, data['response'])
+          let elem = document.getElementById('modal1');
+          let instance = M.Modal.getInstance(elem);
+          getRoute('/query').then(game=> {
+            updateScore(game)
+            if(data['chances'] <= 0){
+              updateModal(elem,game,"/end","Game Over!", "Return to Menu")
+              instance.open()
+            }
+            if (data['isCorrect'] == true){
+              updateModal(elem,game,"/new_round","Round Win!", "Next Round")
+              instance.open()
+            } 
+          })
+            
     
+          
+         })
+       
+       
+      }
+      document.addEventListener("DOMContentLoaded", async function() {
+          let response = await getRoute('/query')
+          updateScore(response)
+      
+        
+      });
     </script> 
     {%endblock%}

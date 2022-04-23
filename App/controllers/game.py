@@ -1,4 +1,5 @@
 from flask_login import current_user
+from App.controllers.user import update_highscore
 from App.database import db
 from App.models import Game
 from App.controllers.word import *
@@ -122,13 +123,14 @@ def start_game(user_id, mode):
         word = get_random_word()
         game = create_game(user_id, mode, word.id)
         return game
-def end_game(user_id):
+def end_game(user):
     try:
-        game = get_current_game(user_id)
+        game = get_current_game(user.id)
         game.set_active(False)
+        update_highscore(user, game.score)
         db.session.add(game)
         db.session.commit()
-        return "Game ended"
+        return True
     except:
         return "A server side error occured", 404
     

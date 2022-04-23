@@ -23,6 +23,8 @@ def get_all_users_json():
         return []
     users = [user.toDict() for user in users]
     return users
-
+def update_highscore(user, score):
+    if score > user.highscore:
+        user.highscore = score 
 def get_all_users():
     return User.query.all()

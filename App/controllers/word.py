@@ -22,7 +22,7 @@ def word_exists(word):
 def add_word(word,partsOfSpeech,meaning):
     new_word = Word(word,partsOfSpeech,meaning)
     try:
-        db.session.add(new_word)
+        db.session.add(new_word) 
         db.session.commit()
     except:
         db.session.rollback

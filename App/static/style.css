@@ -8,7 +8,7 @@
 
     /* Splash Screen */
     .home {
-        padding: 40% 30% 5% 35%;
+        padding: 45% 30% 5% 35%;
         text-align: center;
     }
     
@@ -330,7 +330,7 @@
         }
         /* Splash Screen */
         .home {
-            padding: 15% 50% 0% 38%;
+            padding: 10% 50% 0% 38%;
         }
         /* Frame */
         .wrapper {
@@ -347,7 +347,7 @@
             margin-left:-15px;
         }
         .flash {
-            margin: 3rem 0% 0% 5.6rem;
+            margin: 3rem 0% 0% 5.5rem;
         }
         .small {
             margin: 4rem 0rem 0rem 4rem !important;

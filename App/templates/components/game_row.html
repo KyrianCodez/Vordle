@@ -1,10 +1,21 @@
-<form id="game" data-active="false" >
+<form class="game" id=form{{i}} data-active="false" >
+<!-- <input type="button" class="orange" id="button-{{i}}" onclick="getData(this.form);"> -->
 <div class="row">
+  {% for n in range (5): %}
     {% include '/components/game_tile.html' %}
-    {% include '/components/game_tile.html' %}
-    {% include '/components/game_tile.html' %}
-    {% include '/components/game_tile.html' %}
-    {% include '/components/game_tile.html' %}
+    {% endfor %}
   </div>
-  <input type="button" onclick="getData(this.form)"/>
 </form>
+<script>
+  var i=0;
+  function seti(n) {
+    i=n;
+  }
+    document.addEventListener('keyup', keyPress = function(event) {
+      if (event.key ==='Enter') {
+        document.getElementById(`button-${i}`)
+        form = document.getElementById(`form${i}`);
+          getData(form);
+      }
+    });    
+</script>

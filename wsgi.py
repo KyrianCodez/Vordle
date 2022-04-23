@@ -74,8 +74,6 @@ def initialize():
                     swap = {key : None}
                     row.update(swap)
             jsonArray.append(row)
-    
-
     for row in jsonArray: 
         add_word(row['Word'], row['PartsOfSpeech'], row['Meaning']) 
     create_db(app)

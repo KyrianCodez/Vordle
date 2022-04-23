@@ -3,7 +3,6 @@ from flask_login import login_user, logout_user, LoginManager, current_user
 from flask_jwt import JWT
 from App.models import User
 import json
-import jyserver.Flask as jsf
 
 login_manager = LoginManager()
 def authenticate(username, password):

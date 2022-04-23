@@ -12,15 +12,16 @@
               <col class="purple" />
             </colgroup>
             <tbody>
-              {%with i = 0%}
+
                 {% for rank in rankings%}  
                 
                 <tr>
-                  <td class="rank">{{i+1}}</td>
+                  <td class="rank">{{loop.index}}</td>
                   <td class="user">{{rank.username}}</td>
                 </tr>
+              
               {%  endfor %}
-              {% endwith  %}
+           
             </tbody>
         </table>
     </main>

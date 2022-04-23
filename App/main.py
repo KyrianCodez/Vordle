@@ -44,7 +44,7 @@ def loadConfig(app, config):
         app.config[key] = config[key]
 
 def create_app(config={}):
-    app = Flask(__name__, static_url_path='./static')
+    app = Flask(__name__, static_url_path='/static')
     CORS(app)
     loadConfig(app, config)
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True

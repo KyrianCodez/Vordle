@@ -4,17 +4,13 @@
 {%block content %}
 <h4 class="scoreHeading" id="scoreHeading">Score: <span id="score">0</span></h4>
 </div>
-<div id="game">
+<div id="game-container">
         <div id="board-container">
           <div id="board" style="width: 350px; height: 420px;">
               <div>
-            
+                {% for i in range (5): %}
                   {% include '/components/game_row.html' %}
-                  {% include '/components/game_row.html' %}
-                  {% include '/components/game_row.html' %}
-                  {% include '/components/game_row.html' %}
-                  {% include '/components/game_row.html' %}
-              
+                  {% endfor%}
               </div>
         </div>
     </div>

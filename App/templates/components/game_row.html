@@ -27,7 +27,7 @@
           }
         }
         else {
-          if (event.keyCode !==9 || event.keyCode ==39) {
+          if (event.keyCode !==9 && event.key!=='CapsLock' || event.keyCode ==39) {
             if ((n+1)<5) {
               document.querySelector(`#form${i} #tile${n+1}`).focus();
             }

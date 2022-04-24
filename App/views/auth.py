@@ -76,4 +76,9 @@ def get_leaderboard():
 
 
     
-  
+@auth_views.route('/profile')
+@login_required
+def edit_profile():
+    user = current_user._get_current_object()
+    return render_template('/auth/details.html', user=user)
+

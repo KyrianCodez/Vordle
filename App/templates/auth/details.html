@@ -1,4 +1,4 @@
-{% extends "layout.html" %}
+{% extends "/auth/layout.html" %}
 {% block title %}Account Details{% endblock %}
 {% block page %}Edit Account{% endblock %}
 
@@ -8,10 +8,10 @@
     <main class="auth">
         <form class="auth-form text-center" action="play" method="POST">
             <label for="username" class="auth-label"> USERNAME </label>
-            <input disabled value="{user.username}" type="text" class="auth-input" name="username" required>
+            <input disabled value="{{user.username}}" type="text" class="auth-input" name="username" required>
 
             <label for="pw" class="auth-label"> CHANGE PASSWORD </label>
-            <input type="password" class="auth-input" placeholder="{user.password}" name="pw1" onfocusout="checkpw()" required>
+            <input type="password" class="auth-input" name="pw1" onfocusout="checkpw()" required>
 
             <label for="pw" class="auth-label"> CONFIRM NEW PASSWORD </label>
             <input type="password" class="auth-input" name="pw2" onfocusout="checkpw()" required>
@@ -19,7 +19,7 @@
             <input type="submit" value="SAVE" id="save-btn" class="submit-btn center">
         </form>
         <span class="align-center">
-            <input type="submit" value="DELETE ACCOUNT" id="red" class="red-btn submit-btn" onclick="window.location.href='/'">
+            <input type="submit" value="DELETE ACCOUNT" id="red" class="red-btn submit-btn" onclick="delete_account({{user.username}})'">
         </span>
     </main>
 {% endblock %}
